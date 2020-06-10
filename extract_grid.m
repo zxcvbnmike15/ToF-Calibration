@@ -1,6 +1,6 @@
+function [x,X,b,n_sq_x,n_sq_y,ind_orig,ind_x,ind_y] = extract_grid(I,wintx,winty,fc,cc,kc,dX,dY,xr,yr,click_mode)
 %Function from Bouguet's camera calibration toolbox.
 % Modified by Daniel Herrera C. - Adapted to the Kinect Calibration Toolbox
-function [x,X,b,n_sq_x,n_sq_y,ind_orig,ind_x,ind_y] = extract_grid(I,wintx,winty,fc,cc,kc,dX,dY,xr,yr,click_mode)
 
 if nargin < 11,
     click_mode = 1;

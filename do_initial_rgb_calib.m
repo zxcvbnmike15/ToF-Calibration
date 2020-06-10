@@ -1,8 +1,7 @@
+function do_initial_rgb_calib(do_joint_calib,use_fixed_init)
 %do_initial_rgb_calib()
 % UI function
 % Kinect calibration toolbox by DHC
-function do_initial_rgb_calib(do_joint_calib,use_fixed_init)
-
 %Inputs
 global dataset_path rfiles
 global rgb_grid_p rgb_grid_x

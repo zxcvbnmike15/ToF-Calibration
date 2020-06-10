@@ -1,6 +1,6 @@
-%Function from Bouguet's camera calibration toolbox.
 function [xc,good,bad,type] = cornerfinder(xt,I,wintx,winty,wx2,wy2)
-
+%Function from Bouguet's camera calibration toolbox.
+%
 %[xc] = cornerfinder(xt,I);
 %
 %Finds the sub-pixel corners on the image I with initial guess xt
@@ -18,13 +18,12 @@ function [xc,good,bad,type] = cornerfinder(xt,I,wintx,winty,wx2,wy2)
 %Add a zero zone of size wx2,wy2
 %July 15th, 1999 - Bug on the mask building... fixed + change to Gaussian mask with higher
 %resolution and larger number of iterations.
-
-
+%
+%
 % California Institute of Technology
 % (c) Jean-Yves Bouguet -- Oct. 14th, 1997
 
-
-
+%%
 line_feat = 1; % set to 1 to allow for extraction of line features.
 
 xt = xt';

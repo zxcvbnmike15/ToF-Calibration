@@ -1,8 +1,7 @@
+function do_select_images_Intel(options)
 %do_select_images()
 % UI function.
 % Kinect calibration toolbox by DHC
-function do_select_images_Intel(options)
-
 
 global dataset_path rfiles rsize dfiles cfiles
 

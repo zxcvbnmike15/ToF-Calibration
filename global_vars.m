@@ -3,6 +3,7 @@
 %the results.
 %
 % Kinect calibration toolbox by DHC
+
 global dataset_path rfiles rsize dfiles
 global rgb_grid_p rgb_grid_x
 global depth_corner_p depth_corner_x

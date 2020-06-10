@@ -1,10 +1,10 @@
+function [cost, comp]=calibrate_intel_cost_depth(calib,depth_points,depth_depth,conf_grid_x,conf_grid_p,options)
 % cost=calibrate_intel_cost_depth(params,options,depth_plane_points,depth_plane_disparity)
 % Cost for depth images, used by calibrate_intel_cost;
 % Uses both depth and corner-based cost on confidence map
 %
 % Kinect calibration toolbox by DHC
-function [cost, comp]=calibrate_intel_cost_depth(calib,depth_points,depth_depth,conf_grid_x,conf_grid_p,options)
-
+%%
     cost_pl = calibrate_intel_cost_depth_plane(calib,depth_points,depth_depth);
     cost_corner = calibrate_intel_cost_depth_corners(calib,conf_grid_x,conf_grid_p);  
     

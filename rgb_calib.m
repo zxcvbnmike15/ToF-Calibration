@@ -1,3 +1,4 @@
+function [K,kc,R,t,error_var,error]=rgb_calib(K0,kc0,R0,t0,rgb_grid_p,rgb_grid_x, use_fixed_intrinsic)
 %[K,R,t,kc,error_var]=rgb_calib(K0,kc0,R0,t0,rgb_grid_p,rgb_grid_x,use_fixed_intrinsic)
 % Calibration of a color camera through non-linear minimization.
 %
@@ -15,7 +16,6 @@
 % error_var [1] variance of corner reprojection error (in pixels)
 %
 % Kinect calibration toolbox by DHC
-function [K,kc,R,t,error_var,error]=rgb_calib(K0,kc0,R0,t0,rgb_grid_p,rgb_grid_x, use_fixed_intrinsic)
 
   if(~exist('use_fixed_intrinsic','var'))
     use_fixed_intrinsic = false;

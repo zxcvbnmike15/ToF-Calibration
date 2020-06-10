@@ -1,5 +1,5 @@
-%Function from Bouguet's camera calibration toolbox.
 function [XX,H] = projectedGrid ( P1, P2, P3, P4 , nx, ny);
+%Function from Bouguet's camera calibration toolbox.
 
 % new formalism using homographies
 

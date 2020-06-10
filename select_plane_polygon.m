@@ -1,9 +1,9 @@
+function polygon=select_plane_polygon(imd)
 %polygon=select_plane_polygon(imd)
 % UI function. Asks the user to select the polygon enclosing the
 % calibration plane in the depth image.
 %
 % Kinect calibration toolbox by DHC
-function polygon=select_plane_polygon(imd)
 
 display('Select corners of polygon enclosing plane points');
 display('[left=add corner,ESC=remove corner,right=end]');

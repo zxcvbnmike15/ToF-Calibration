@@ -1,6 +1,6 @@
-%Function from Bouguet's camera calibration toolbox.
 function ns = count_squares(I,x1,y1,x2,y2,win);
-
+%Function from Bouguet's camera calibration toolbox.
+%%
 [ny,nx] = size(I);
 
 if ((x1-win <= 0) || (x1+win >= nx) || (y1-win <= 0) || (y1+win >= ny) || ...

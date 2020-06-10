@@ -1,10 +1,9 @@
+function imd = read_disparity(filename,options)
 %imd = read_disparity(filename)
 % Reads a disparity image from disk. Corrects endianness issues. Replaces
 % 'nan_value' values with NaNs. Default for nan_value is 2047.
 %
 % Kinect calibration toolbox by DHC
-function imd = read_disparity(filename,options)
-
 if(isfield(options,'read_image'))
   [imd,max_value]=options.read_image(filename);
 else

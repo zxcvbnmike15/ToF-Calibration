@@ -1,8 +1,8 @@
+function im_rgb=visualize_disparity(im)
 %im_rgb=visualize_disparity(im)
 % Creates a visualization rgb image from a disparity image
 %
 % Kinect calibration toolbox by DHC
-function im_rgb=visualize_disparity(im)
 
 if(size(im,3) == 1)
   im_rgb = mat2rgb(im,jet(256));

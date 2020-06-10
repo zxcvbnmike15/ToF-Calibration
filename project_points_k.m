@@ -1,3 +1,4 @@
+function p=project_points_k(X,K,kc,R,t)
 %p=project_points_k(X,K,kc,R,t)
 % Projects a series of points onto the image plane
 %
@@ -9,7 +10,6 @@
 % p [2xP] points in pixel coordinates
 %
 % Kinect calibration toolbox by DHC
-function p=project_points_k(X,K,kc,R,t)
 
 if(~exist('kc','var'))
   kc = [0 0 0 0 0];

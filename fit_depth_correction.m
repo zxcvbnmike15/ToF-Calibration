@@ -1,4 +1,3 @@
-
 function calib = fit_depth_correction(calib)
 
 %remove the previous correction estimate

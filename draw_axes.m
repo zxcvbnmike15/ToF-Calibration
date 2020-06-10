@@ -1,8 +1,7 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+function draw_axes(corners,corner_count_x)
 % Function taken from the OCamCalib toolbox.
 % Modified by Daniel Herrera C.
 % - Changed plot(y,x) to plot(x,y)
-function draw_axes(corners,corner_count_x)
 
   xo_X = corners(1,1:corner_count_x)+1;
   yo_X = corners(2,1:corner_count_x)+1;

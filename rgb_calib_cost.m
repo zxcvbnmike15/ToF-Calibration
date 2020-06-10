@@ -1,10 +1,9 @@
+function cost=rgb_calib_cost(raw,params0,rgb_grid_p,rgb_grid_x,use_fixed_intrinsic)
 %cost=rgb_calib_cost(raw,params0,rgb_grid_p,rgb_grid_x,use_fixed_intrinsic)
 % Cost function for rgb_calib(). Reprojects corners onto image and compares
 % pixel positions.
 %
 % Kinect calibration toolbox by DHC
-function cost=rgb_calib_cost(raw,params0,rgb_grid_p,rgb_grid_x,use_fixed_intrinsic)
-
 params = rgb_calib_r2p(raw,params0,use_fixed_intrinsic);
 
 cost=[];

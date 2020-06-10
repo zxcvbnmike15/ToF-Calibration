@@ -1,6 +1,7 @@
+
+function p3D = depth2world(p, d, calib)
 %put depth to ToF camera frame
 % d should be corrected depth!
-function p3D = depth2world(p, d, calib)
 
     %compute correction if included in the model
     dc = correct_depth(p, d, calib);

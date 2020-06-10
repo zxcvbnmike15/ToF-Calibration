@@ -1,7 +1,5 @@
-%% initialize calibration
-
 function do_initial_calib_intel(options)
-
+%% initialize calibration
     global calib0 rfiles
 
     %do corner-based calibration

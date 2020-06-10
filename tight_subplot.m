@@ -1,3 +1,4 @@
+function ha = tight_subplot(Nh, Nw, gap, marg_h, marg_w)
 % tight_subplot creates "subplot" axes with adjustable gaps and margins
 %
 % ha = tight_subplot(Nh, Nw, gap, marg_h, marg_w)
@@ -18,11 +19,10 @@
 %  Example: ha = tight_subplot(3,2,[.01 .03],[.1 .01],[.01 .01])
 %           for ii = 1:6; axes(ha(ii)); plot(randn(10,ii)); end
 %           set(ha(1:4),'XTickLabel',''); set(ha,'YTickLabel','')
-
+%
 % Pekka Kumpulainen 20.6.2010   @tut.fi
 % Tampere University of Technology / Automation Science and Engineering
-function ha = tight_subplot(Nh, Nw, gap, marg_h, marg_w)
-
+%
 % Copyright (c) 2010, Pekka Kumpulainen
 % All rights reserved.
 % 

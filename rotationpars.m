@@ -1,6 +1,6 @@
+function t=rotationpars(R)
 % by Juho Kannala
 %Matrix form of rotation to vector form (Rodriguez formula)
-function t=rotationpars(R)
 
 [V,D]=eig(R-eye(3));
 evs=diag(D);

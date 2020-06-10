@@ -1,7 +1,7 @@
+function do_select_planes_Intel()
 %do_select_planes()
 % UI function.
 % Kinect calibration toolbox by DHC
-function do_select_planes_Intel()
 
 %Input
 global dataset_path dfiles

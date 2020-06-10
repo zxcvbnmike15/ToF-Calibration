@@ -1,7 +1,7 @@
+function [R,t] = estimate_plane_to_plane(Rext1,text1,Rext2,text2)
 %compute relativa transformation based on the set of planes, defined by
 %rotations and translations;
 
-function [R,t] = estimate_plane_to_plane(Rext1,text1,Rext2,text2)
   good = find(cellfun(@(x) ~isempty(x),Rext1) & cellfun(@(x) ~isempty(x),Rext2));
   
   planeN1 = zeros(3,2);

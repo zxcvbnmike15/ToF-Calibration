@@ -1,3 +1,4 @@
+function H=homography_from_corners(p,x)
 %H=homography_from_corners(p,x)
 % Builds a homography from two corresponding point lists. 
 %
@@ -6,7 +7,6 @@
 % H [3x3] p=H*x (up to scale)
 %
 % Kinect calibration toolbox by DHC
-function H=homography_from_corners(p,x)
 
 if(size(p,1) > 2)
   p = p(1:2,:) ./ repmat(p(3,:),2,1);

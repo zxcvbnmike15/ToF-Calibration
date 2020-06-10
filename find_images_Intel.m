@@ -1,3 +1,4 @@
+function [rfiles,rsize,dfiles,cfiles]=find_images_Intel(options,path, rfile_format, dfile_format, cfile_format)
 %find_images - Searches the given path to find the calibration images.
 %Input
 %  path [string] the path where images are located
@@ -11,8 +12,8 @@
 %  rsize  {1xK}[1x3] size of the images for each camera
 %  dfiles {1xN}[string] fully qualified filename of the 
 %         depth images.
-function [rfiles,rsize,dfiles,cfiles]=find_images_Intel(options,path, rfile_format, dfile_format, cfile_format)
-  ccount = length(rfile_format); %Color camera count
+
+ccount = length(rfile_format); %Color camera count
   rfiles = cell(1,ccount);
   [rfiles{:}] = deal({});
   rsize = cell(1,ccount);

@@ -1,3 +1,4 @@
+function calib=calibrate_intel(options,calib0)
 %[params,params_error]=calibrate_kinect(options,rgb_grid_p,rgb_grid_x,depth_plane_points,depth_plane_disparity,params0)
 % Performas a non-linear minimization of the calibration parameters using
 % levenberg-marquardt algorithm.
@@ -28,8 +29,7 @@
 % params_error tolerances of the calibration parameters
 %
 % Kinect calibration toolbox by DHC
-function calib=calibrate_intel(options,calib0)
-
+%%
     global conf_grid_x conf_grid_p depth_plane_points depth_plane_disparity rgb_grid_p
 
     %Encode params

@@ -1,7 +1,7 @@
+function params=rgb_calib_r2p(raw,params0,use_fixed_intrinsic)
 %params=rgb_calib_r2p(raw,params0,use_fixed_intrinsic)
 % Used by rgb_calib()
 % Kinect calibration toolbox by DHC
-function params=rgb_calib_r2p(raw,params0,use_fixed_intrinsic)
 
 params = params0;
 base = 1;

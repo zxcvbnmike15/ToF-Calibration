@@ -1,6 +1,6 @@
+function R=rotationmat(t)
 % by Juho Kannala
 %Vector form of rotation to matrix form (Rodriguez formula)
-function R=rotationmat(t)
 
 t=t(:);
 phi=norm(t);

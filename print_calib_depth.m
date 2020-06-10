@@ -1,9 +1,9 @@
+function print_calib_depth(depth_calib,depth_calib_error)
 %print_calib_color(depth_calib,depth_calib_error)
 % Prints depth calibration info. 
 % depth_calib_error is optional
 %
 % Kinect calibration toolbox by DHC
-function print_calib_depth(depth_calib,depth_calib_error)
 
 if(nargin < 2)
   depth_calib_error = [];

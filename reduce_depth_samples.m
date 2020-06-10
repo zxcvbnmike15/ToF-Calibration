@@ -1,11 +1,10 @@
+function [points, disparity]=reduce_depth_samples(points_in, disparity_in, max_count)
 %reduce_depth_point_count(max_count)
 % Reduces the total ammount of points in depth_plane_points and 
 % depth_plane_disparity to make the minimization possible with limited
 % memory.
 %
 % Kinect calibration toolbox by DHC
-function [points, disparity]=reduce_depth_samples(points_in, disparity_in, max_count)
-
 if(isempty(max_count) || max_count == 0)
   error('reduce_depth_samples:max_count','Invalid max_count.');
 end

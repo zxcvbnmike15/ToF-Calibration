@@ -1,3 +1,4 @@
+function [K,R,t]=calib_from_homographies(H)
 %[K,R,t]=calib_from_homographies(H)
 %Computes calibration parameters using homographies
 %Implemented directly from Zhang's '99 paper
@@ -10,7 +11,7 @@
 % t is a cell array of 3x1 translations
 %
 % Kinect calibration toolbox by DHC
-function [K,R,t]=calib_from_homographies(H)
+%%
   vH = H(~cellfun(@(x) isempty(x),H));
   hcount = length(vH);
   V = zeros(2*hcount,6);

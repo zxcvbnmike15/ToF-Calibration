@@ -1,7 +1,7 @@
+function do_select_rgb_corners()
 %do_select_rgb_corners()
 % UI function.
 % Kinect calibration toolbox by DHC
-function do_select_rgb_corners()
 
 global grid_p grid_x rfiles rgb_grid_p rgb_grid_x
 global corner_count_x corner_count_y dx
