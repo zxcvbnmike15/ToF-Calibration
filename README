@@ -1,5 +1,6 @@
 Copyright (C) 2014 Alina Kuznetsova
 
+===============Original Copyright Notice and Usage Agreement===============
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published by
 the Free Software Foundation, either version 2.1 of the License, or
@@ -15,7 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Author: Alina Kuznetsova 
 
-=================================News===========================================
+=================================News======================================
 
 - The test data collected using Intel Creative Depth Sensor can be downloaded from
 here: https://dl.dropboxusercontent.com/u/25197257/data.zip
@@ -24,7 +25,7 @@ here: https://dl.dropboxusercontent.com/u/25197257/data.zip
 now you only need to select the regions where the checkerboard is and not the 
 exact corners (-> faster)
 
-================================================================================
+===========================================================================
 
 Please cite the following work if you use the code:
 
@@ -42,7 +43,7 @@ year = {2014}
 
 If you have any questions, please contact me: kuznetso@tnt.uni-hannover.de
 
-=========================3d-party code used======================================
+=========================3d-party code used================================
 
 The following 3d-party code is used and included with the code:
 
@@ -50,7 +51,7 @@ The following 3d-party code is used and included with the code:
 2) the code uses Gaussian Kernel regression by Youngmok Yun (http://youngmok.com/gaussian-kernel-regression-for-multidimensional-feature-with-matlab-code/)
 3) the code uses fast distance matrix computation by Mo Chen (http://www.mathworks.de/matlabcentral/fileexchange/24599-pairwise-distance-matrix)
 
-=========================Usage======================================
+=========================Usage=============================================
 
 Please note, that right now the Toolbox supports only one color camera. 
 This will be corrected in future releases.
@@ -97,4 +98,22 @@ load(filename) %standard MATLAB function
 
 * To run the calibration from the start, set the corresponding fields in calib0 to []
 
+================2020 File Edits ===========================================
+The original codebase has been modified to improve usability.
 
+All improvements fall under the GNU LGPL v3:
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation, either version 2.1 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Author: Michael Smith - CCOM/UNH
