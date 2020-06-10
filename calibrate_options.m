@@ -5,6 +5,7 @@ function options=calibrate_options()
 % the minimization.
 % 
 % Kinect calibration toolbox by DHC
+
 options.display = 'iter'; %No info
 options.correct_depth = 1; %use depth correction
 options.depth_in_calib = 1;%use depth measurements in calibration

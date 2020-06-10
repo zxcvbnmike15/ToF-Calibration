@@ -8,6 +8,7 @@ function Xd = distort(Xn,kc)
 % Xd [2xP] distorted points
 % 
 % Kinect calibration toolbox by DHC
+
 if(size(Xn,1) ~= 2)
   error('distort:inputs','Xn should be [2xN]');
 end

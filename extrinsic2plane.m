@@ -1,10 +1,10 @@
 function [N,d]=extrinsic2plane(R,t)
 %[N,d]=extrinsic2plane(R,t)
-% Extracts calibration plane parameters (normal and distance from origin) 
+% Extracts calibration plane parameters (normal and distance from origin)
 % from the extrinsics.
 %
 % Kinect calibration toolbox by DHC
 
-  N = R(:,3);
-  d = dot(R(:,3),t);
+N = R(:,3);
+d = dot(R(:,3),t);
 

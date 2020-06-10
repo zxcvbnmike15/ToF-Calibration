@@ -14,11 +14,9 @@ valid = abs(error)<60 & d < 100;
 calib.inputs = [depthm(valid) ; imxy(:,valid)];
 calib.res = error(:,valid);
 
-calib.inputs  = calib.inputs(calib.coords,:); 
+calib.inputs  = calib.inputs(calib.coords,:);
 
 subind = 1:1:size(calib.inputs,2);
 
 calib.inputs = calib.inputs(:,subind);
 calib.res  = calib.res(subind);
-
-end

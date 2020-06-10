@@ -1,6 +1,6 @@
 function H=homography_from_corners(p,x)
 %H=homography_from_corners(p,x)
-% Builds a homography from two corresponding point lists. 
+% Builds a homography from two corresponding point lists.
 %
 % p [2xP]
 % x [2xP]
@@ -9,10 +9,10 @@ function H=homography_from_corners(p,x)
 % Kinect calibration toolbox by DHC
 
 if(size(p,1) > 2)
-  p = p(1:2,:) ./ repmat(p(3,:),2,1);
+    p = p(1:2,:) ./ repmat(p(3,:),2,1);
 end
 if(size(x,1) > 2)
-  x = x(1:2,:);
+    x = x(1:2,:);
 end
 count = size(p,2);
 assert(count==size(x,2));
@@ -35,11 +35,11 @@ xn = Tx*[x; ones(1,count)];
 %Constraints
 A = zeros(2*count,9);
 for i=1:count
-  A(i*2-1, 4:6) = -pn(3,i)*xn(:,i)';
-  A(i*2-1, 7:9) = pn(2,i)*xn(:,i)';
-
-  A(i*2, 1:3) = pn(3,i)*xn(:,i)';
-  A(i*2, 7:9) = -pn(1,i)*xn(:,i)';
+    A(i*2-1, 4:6) = -pn(3,i)*xn(:,i)';
+    A(i*2-1, 7:9) = pn(2,i)*xn(:,i)';
+    
+    A(i*2, 1:3) = pn(3,i)*xn(:,i)';
+    A(i*2, 7:9) = -pn(1,i)*xn(:,i)';
 end
 
 [~,~,v] = svd(A);

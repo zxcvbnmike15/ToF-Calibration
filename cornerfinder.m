@@ -23,7 +23,6 @@ function [xc,good,bad,type] = cornerfinder(xt,I,wintx,winty,wx2,wy2)
 % California Institute of Technology
 % (c) Jean-Yves Bouguet -- Oct. 14th, 1997
 
-%%
 line_feat = 1; % set to 1 to allow for extraction of line features.
 
 xt = xt';

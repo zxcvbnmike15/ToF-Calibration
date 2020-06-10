@@ -33,7 +33,6 @@ function [H,Hnorm,inv_Hnorm] = compute_homography(m,M);
 %                  matrix (derivative with respect to the intrinsic and extrinsic parameters).
 %                  This function is called within the minimization loop.
 
-%%
 Np = size(m,2);
 
 if size(m,1)<3,

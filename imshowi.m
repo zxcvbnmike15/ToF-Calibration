@@ -14,5 +14,3 @@ switch type
         I=visualize_disparity(I);
         imshow(I);
 end
-
-end
