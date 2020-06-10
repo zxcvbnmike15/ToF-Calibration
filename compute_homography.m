@@ -1,6 +1,6 @@
-%Function from Bouguet's camera calibration toolbox.
 function [H,Hnorm,inv_Hnorm] = compute_homography(m,M);
-
+%Function from Bouguet's camera calibration toolbox.
+%
 %compute_homography
 %
 %[H,Hnorm,inv_Hnorm] = compute_homography(m,M)
@@ -32,9 +32,6 @@ function [H,Hnorm,inv_Hnorm] = compute_homography(m,M);
 %project_points.m: Computes the 2D image projections of a set of 3D points, and also returns te Jacobian
 %                  matrix (derivative with respect to the intrinsic and extrinsic parameters).
 %                  This function is called within the minimization loop.
-
-
-
 
 Np = size(m,2);
 

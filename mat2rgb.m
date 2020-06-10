@@ -1,7 +1,7 @@
 function rgb=mat2rgb(mat, map, range)
 
 if(nargin<3)
-  range = [min(mat(:)) max(mat(:))];
+    range = [min(mat(:)) max(mat(:))];
 end
 
 map_length = size(map,1);

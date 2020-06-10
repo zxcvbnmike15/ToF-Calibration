@@ -1,5 +1,5 @@
-%Function from Bouguet's camera calibration toolbox.
 function [H,Hnorm,inv_Hnorm] = compute_collineation (a00, a10, a11, a01);
+%Function from Bouguet's camera calibration toolbox.
 
 % new formalism using homographies
 

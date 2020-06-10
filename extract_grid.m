@@ -1,16 +1,16 @@
+function [x,X,b,n_sq_x,n_sq_y,ind_orig,ind_x,ind_y] = extract_grid(I,wintx,winty,fc,cc,kc,dX,dY,xr,yr,click_mode)
 %Function from Bouguet's camera calibration toolbox.
 % Modified by Daniel Herrera C. - Adapted to the Kinect Calibration Toolbox
-function [x,X,b,n_sq_x,n_sq_y,ind_orig,ind_x,ind_y] = extract_grid(I,wintx,winty,fc,cc,kc,dX,dY,xr,yr,click_mode)
 
-if nargin < 11,
+if nargin < 11
     click_mode = 1;
-end;
+end
 
 
-if nargin < 10,
+if nargin < 10
     xr = [];
     yr = [];
-end;
+end
 
 
 map = gray(256);
@@ -24,51 +24,55 @@ figure(1);
 imshow(Id,[]);
 colormap(map);
 
-if ~isempty(xr);
+if ~isempty(xr)
     figure(1);
     hold on;
     plot(xr,yr,'go');
     hold off;
-end;
+end
 
 
-if nargin < 2,
+if nargin < 2
     
     disp('Window size for corner finder (wintx and winty):');
     wintx = input('wintx ([] = 5) = ');
-    if isempty(wintx), wintx = 5; end;
+    if isempty(wintx)
+        wintx = 5;
+    end
     wintx = round(wintx);
     winty = input('winty ([] = 5) = ');
-    if isempty(winty), winty = 5; end;
+    if isempty(winty)
+        winty = 5;
+    end
     winty = round(winty);
     
     fprintf(1,'Window size = %dx%d\n',2*wintx+1,2*winty+1);
     
-end;
+end
 
 
 need_to_click = 1;
 
 color_line = 'g';
 
-while need_to_click,
-    
+while need_to_click
     
     title('Click on the four extreme corners of the rectangular pattern (ESC to skip image)...');
-    
     disp('Click on the four extreme corners of the rectangular complete pattern (ESC to skip image)...');
     
-    x= [];y = [];
+    x = [];
+    y = [];
+    
     figure(1); hold on;
     
     detector = @(p,I) cornerfinder(p,I,winty,wintx);
     [x,y,b] = get4points(I,detector,wintx,winty);
     if(b==27)
-       x = [];
-       X = [];
-       return;
+        x = [];
+        X = [];
+        return;
     end
-
+    
     plot([x;x(1)],[y;y(1)],'-','color',[ 1.000 0.314 0.510 ],'linewidth',2);
     drawnow;
     hold off;
@@ -77,7 +81,6 @@ while need_to_click,
     
     x = Xc(1,:)';
     y = Xc(2,:)';
-    
     
     % Sort the corners:
     x_mean = mean(x);
@@ -91,15 +94,12 @@ while need_to_click,
     [junk,ind] = sort(mod(theta-theta(1),2*pi));
     
     %ind = ind([2 3 4 1]);
-    
     ind = ind([4 3 2 1]); %-> New: the Z axis is pointing uppward
-    
     
     x = x(ind);
     y = y(ind);
     x1= x(1); x2 = x(2); x3 = x(3); x4 = x(4);
     y1= y(1); y2 = y(2); y3 = y(3); y4 = y(4);
-    
     
     % Find center:
     p_center = cross(cross([x1;y1;1],[x3;y3;1]),cross([x2;y2;1],[x4;y4;1]));
@@ -128,7 +128,6 @@ while need_to_click,
     
     delta = 30;
     
-    
     figure(1); imshow(Id,[]);
     colormap(map);
     hold on;
@@ -141,7 +140,6 @@ while need_to_click,
     hO=text(x4 + delta * vO(1) ,y4 + delta*vO(2),'O','color','g','Fontsize',14);
     hold off;
     
-    
     % Try to automatically count the number of squares in the grid
     
     n_sq_x1 = count_squares(I,x1,y1,x2,y2,wintx);
@@ -149,54 +147,51 @@ while need_to_click,
     n_sq_y1 = count_squares(I,x2,y2,x3,y3,wintx);
     n_sq_y2 = count_squares(I,x4,y4,x1,y1,wintx);
     
-    
-    
     % If could not count the number of squares, enter manually
-    
-    if (n_sq_x1~=n_sq_x2)|(n_sq_y1~=n_sq_y2),
-        
-        if ~click_mode,
+    if (n_sq_x1~=n_sq_x2) | (n_sq_y1~=n_sq_y2)
+        if ~click_mode
             
             % This way, the user manually enters the number of squares and no more clicks.
             % Otherwise, he user is asked to click again.
-            
             disp('Could not count the number of squares in the grid. Enter manually.');
-            n_sq_x = input('Number of squares along the X direction ([]=10) = '); %6
-            if isempty(n_sq_x), n_sq_x = 10; end;
-            n_sq_y = input('Number of squares along the Y direction ([]=10) = '); %6
-            if isempty(n_sq_y), n_sq_y = 10; end; 
             
+            n_sq_x = input('Number of squares along the X direction ([]=10) = '); %6
+            if isempty(n_sq_x)
+                n_sq_x = 10;
+            end
+            
+            n_sq_y = input('Number of squares along the Y direction ([]=10) = '); %6
+            if isempty(n_sq_y)
+                n_sq_y = 10;
+            end
             
         else
-        	x = [];
+            x = [];
             X = [];
             return;
         end
         
     else
-        
         n_sq_x = n_sq_x1;
         n_sq_y = n_sq_y1;
         
         need_to_click = 0;
-        
-    end;
-    
+    end
     color_line = 'r';
-    
-end;
+end
 
-
-if ~exist('dX')|~exist('dY'),
+if ~exist('dX') | ~exist('dY')
     
     % Enter the size of each square
-    
     dX = input(['Size dX of each square along the X direction ([]=30mm) = ']);
     dY = input(['Size dY of each square along the Y direction ([]=30mm) = ']);
-    if isempty(dX), dX = 30; end;
-    if isempty(dY), dY = 30; end;
-    
-end;
+    if isempty(dX)
+        dX = 30;
+    end
+    if isempty(dY)
+        dY = 30;
+    end
+end
 
 
 % Compute the inside points through computation of the planar homography (collineation)
@@ -229,7 +224,7 @@ L = n_sq_y*dY;
 
 
 
-if nargin < 6,
+if nargin < 6
     
     %%%%%%%%%%%%%%%%%%%%%%%% ADDITIONAL STUFF IN THE CASE OF HIGHLY DISTORTED IMAGES %%%%%%%%%%%%%
     figure(1);
@@ -244,13 +239,13 @@ if nargin < 6,
     
     quest_distort = ~isempty(quest_distort);
     
-    if quest_distort,
+    if quest_distort
         % Estimation of focal length:
         c_g = [size(I,2);size(I,1)]/2 + .5;
         f_g = Distor2Calib(0,[[x(1) x(2) x(4) x(3)] - c_g(1);[y(1) y(2) y(4) y(3)] - c_g(2)],1,1,4,W,L,[-W/2 W/2 W/2 -W/2;L/2 L/2 -L/2 -L/2; 0 0 0 0],100,1,1);
         f_g = mean(f_g);
         script_fit_distortion;
-    end;
+    end
     %%%%%%%%%%%%%%%%%%%%% END ADDITIONAL STUFF IN THE CASE OF HIGHLY DISTORTED IMAGES %%%%%%%%%%%%%
     
 else
@@ -263,12 +258,12 @@ else
     
     [XXu] = projectedGrid ( [xu(1);yu(1)], [xu(2);yu(2)],[xu(3);yu(3)], [xu(4);yu(4)],n_sq_x+1,n_sq_y+1); % The full grid
     
-    r2 = sum(XXu.^2);       
+    r2 = sum(XXu.^2);
     XX = (ones(2,1)*(1 + kc(1) * r2 + kc(2) * (r2.^2))) .* XXu;
     XX(1,:) = fc(1)*XX(1,:)+cc(1);
     XX(2,:) = fc(2)*XX(2,:)+cc(2);
     
-end;
+end
 
 
 Np = (n_sq_x+1)*(n_sq_y+1);
@@ -292,8 +287,6 @@ ind_y = 1;
 
 x_box_kk = [grid_pts(1,:)-(wintx+.5);grid_pts(1,:)+(wintx+.5);grid_pts(1,:)+(wintx+.5);grid_pts(1,:)-(wintx+.5);grid_pts(1,:)-(wintx+.5)];
 y_box_kk = [grid_pts(2,:)-(winty+.5);grid_pts(2,:)-(winty+.5);grid_pts(2,:)+(winty+.5);grid_pts(2,:)+(winty+.5);grid_pts(2,:)-(winty+.5)];
-
-
 
 
 figure(3);
@@ -321,18 +314,12 @@ min_y = min(grid_pts(2,:))-6;
 max_y = max(grid_pts(2,:))+6;
 axis([min_x max_x min_y max_y]);
 
-
-
-
 Xi = reshape(([0:n_sq_x]*dX)'*ones(1,n_sq_y+1),Np,1)';
 Yi = reshape(ones(n_sq_x+1,1)*[n_sq_y:-1:0]*dY,Np,1)';
 Zi = zeros(1,Np);
 
 Xgrid = [Xi;Yi;Zi];
 
-
 % All the point coordinates (on the image, and in 3D) - for global optimization:
-
 x = grid_pts;
 X = Xgrid;
-

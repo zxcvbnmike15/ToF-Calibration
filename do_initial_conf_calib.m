@@ -52,4 +52,3 @@ for i=1:length(indices);
 end
 fprintf('Reprojection error mean: %f\n',mean(error_rel));
 fprintf('Reprojection error std. dev.: %f\n',std(error_rel));
-end

@@ -1,3 +1,4 @@
+function Xd = distort(Xn,kc)
 %Xd = distort(Xn,kc)
 % Distorts points according to the Heikkila's distortion model (same used
 % by Bouguet's toolbox).
@@ -7,7 +8,6 @@
 % Xd [2xP] distorted points
 % 
 % Kinect calibration toolbox by DHC
-function Xd = distort(Xn,kc)
 
 if(size(Xn,1) ~= 2)
   error('distort:inputs','Xn should be [2xN]');

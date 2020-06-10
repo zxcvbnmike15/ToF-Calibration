@@ -16,5 +16,3 @@ for i=1:length(depth_plane_disparity)
     depthm = [depthm depth_plane_disparity{i}];
     imxy = [imxy depth_plane_points{i}];
 end
-
-end

@@ -15,15 +15,15 @@ fprintf('-------------------\n');
 use_automatic = true;
 %        end
 %  end
-  
+
 if(isempty(corner_count_x))
-      corner_count_x = input('Inner corner count in X direction: ');
-      corner_count_y = input('Inner corner count in Y direction: ');
+    corner_count_x = input('Inner corner count in X direction: ');
+    corner_count_y = input('Inner corner count in Y direction: ');
 end
-  
+
 default = 26;
 if(isempty(dx))
-      dx = input(['Square size ([]=' num2str(default) 'mm): ']);
+    dx = input(['Square size ([]=' num2str(default) 'mm): ']);
 end
 if(isempty(dx))
     dx = default;
@@ -36,5 +36,3 @@ conf_grid_x = grid_x;
 
 grid_p = {};
 grid_x = {};
-
-end
