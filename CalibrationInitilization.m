@@ -41,6 +41,13 @@ function cal_info = CalibrationInitilization(varargin)
 %   confidence_file_format  - Format of Confidence Image files.
 %                             Regular Expressions.
 %
+% NOTE: Regular Expressions
+%   The regular expressions are very useful for identifying file naming
+%   formats. The issue is you can spend an eternity customizing the
+%   expression to match some wakey naming convention. So in the interest of
+%   time, use a simple naming convension. Seriously, the default is a
+%   pretty good one. I'm basically asking you to not have a date/time in
+%   the file name. Make the only number the photonumber
 % OUTPUTS:
 %   cal_info                - Structure containing calibration settings and
 %                               info.
@@ -51,6 +58,8 @@ function cal_info = CalibrationInitilization(varargin)
 % Copyright 2020 
 
 %% Stadard Setup
+fprintf(1,'Initilizing Calibration parameters and settings.\n');
+
 % Calibration Options
 cal_info.options.display = 'iter'; %No info
 cal_info.options.correct_depth = true; %use depth correction
@@ -63,6 +72,15 @@ cal_info.options.use_fixed_ini = true; %use fixed initialization for initial int
 cal_info.formats.ColorFiles = 'ImRGB\d*\.png';
 cal_info.formats.DepthFiles = 'ImDepthOrig\d*\.png';
 cal_info.formats.ConfidenceFiles = 'ImDepthConf\d*\.png';
+
+% Files
+cal_info.files.depth = [];
+cal_info.files.confidence = [];
+cal_info.files.color = [];
+
+% Calibration info
+cal_info.files_added = false;
+cal_info.dataset_path = [];
 
 %% Parse Inputs
 for ii = 1:2:length(varargin)
@@ -162,7 +180,10 @@ for ii = 1:2:length(varargin)
             continue
     end
 end
+fprintf(1,'Calibration Initilization complete.\n');
 end
+
+
 
 function setup_out = cal_ui(setup_in)
 % Calibration Initilization : cal_setup()
@@ -258,11 +279,14 @@ end
 setup_out.options.use_fixed_ini = val_in;
 
 %% Calibration formats
-fprintf(1,'\n\nGood Job! I really appreciate the effort there. Keep at it!\n');
+fprintf(1,'\n\nGood Job! I really appreciate the effort there. Keep at it!\n\n');
 fprintf(1,'+++++ Calibration Image Formats +++++\n');
-fprintf(1,' The program will search a directory for calibration images.\n');
-fprintf(1,'The images must all have the same naming convention and be in the same folder.\n');
-fprintf(1,' You can input custom formats using Regular Expression formatting.\n');
+fprintf(1,'The program will search a directory for calibration images.\n');
+fprintf(1,'The image pertaining to a group must all have the same naming convention and be in the same folder.\n');
+fprintf(1,'You can input custom formats using Regular Expression formatting.\n');
+fprintf(1,'Do not get too wild with image names. Currently, the program only searches ');
+fprintf(1,'for the incrementing number in the file name. It is strongly suggested ');
+fprintf(1,'the images followe the default formats. Adding smarter file reading functionality is hard');
 fprintf(1,'The default formats are shown below:\n\n');
 fprintf(1,'Color Files -\t\t\tImRGB\\d*\\.png\n');
 fprintf(1,'Depth Files -\t\t\tImDepthOrig\\d*\\.png\n');

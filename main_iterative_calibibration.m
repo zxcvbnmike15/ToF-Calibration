@@ -1,30 +1,34 @@
 %% Clear workspace to prevent issues with global variables
 clear global; clear function; clear all;
-
+clc;
+close all;
 %% Run Global Vars According to README
 global_vars
-
-%% Add the Data Directory Path
-% Testing Cases: 
-% 1. Data Directory Provided
-% 2. Data Directory Not Provided
-dataset_path = fullfile('C:\Users\zxcvb\Documents\MATLAB\Yuri\data');
-% dataset_path = [];
-
-%% Establish Calibiration Options
-options = calibrate_options();
-options.color_present = 1;
-
-%% iterative calibration
 
 global dataset_path conf_grid_p conf_grid_x depth_plane_points depth_plane_disparity calib0
 global dfiles rgb_grid_p
 global corner_count_x corner_count_y dx
 
+%% Establish Calibiration Options
+cal_info = CalibrationInitilization('color_present',true);
+
+
+%% Add the Data Directory Path
+% Testing Cases: 
+% 1. Data Directory Provided
+dataset_path = fullfile('C:\Users\zxcvb\Documents\MATLAB\Yuri\data');
+cal_info.dataset_path = dataset_path;
+
+% 2. Data Directory Not Provided
+if cal_info.files_added == false
+    cal_info = find_images(cal_info);
+end
+
 if isempty(dfiles)
     %if needed, select images
     do_select_images_Intel(options);
 end
+%% iterative calibration
 
 do_process_depth_regions(options);
 
