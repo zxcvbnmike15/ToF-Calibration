@@ -92,6 +92,8 @@ if cal_info.options.color_present == 1
     cal_info.files.color = color_files;
 end
 cal_info.files_added = 1;
+fprintf(1,'%d plane poses found.\n',numel(cal_info.files.depth));
+
 end
 
 

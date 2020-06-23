@@ -13,16 +13,21 @@ global corner_count_x corner_count_y dx
 cal_info = CalibrationInitilization('color_present',true);
 
 
-%% Add the Data Directory Path
-% Testing Cases: 
-% 1. Data Directory Provided
+%% Add Camera Files
+
+% Add the dataset path
 dataset_path = fullfile('C:\Users\zxcvb\Documents\MATLAB\Yuri\data');
 cal_info.dataset_path = dataset_path;
 
-% 2. Data Directory Not Provided
+% Find Images: 
 if cal_info.files_added == false
     cal_info = find_images(cal_info);
 end
+
+% Show Image thumbnails
+plot_all_images(cal_info.dataset_path,cal_info.files,cal_info.options)
+
+
 
 if isempty(dfiles)
     %if needed, select images
