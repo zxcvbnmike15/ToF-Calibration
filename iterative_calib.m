@@ -1,4 +1,9 @@
-
+clear global
+clear function
+clear all
+close all
+clc
+%%
 options = calibrate_options();
 options.color_present = 1;
 %% iterative calibration
