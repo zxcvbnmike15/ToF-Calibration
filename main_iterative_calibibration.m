@@ -24,9 +24,14 @@ if cal_info.files_added == false
     cal_info = find_images(cal_info);
 end
 
-% Show Image thumbnails
-plot_all_images(cal_info.dataset_path,cal_info.files,cal_info.options)
+% Show Color Image thumbnails
+plot_color_images(cal_info.files.color);
 
+% Show Depth Image Thumbnails
+plot_depth_images(cal_info.files.depth, cal_info.options);
+
+% Show Confidence Image Thumbnails
+plot_confidence_images(cal_info.files.confidence);
 
 
 if isempty(dfiles)
