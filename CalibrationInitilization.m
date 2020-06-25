@@ -74,6 +74,7 @@ cal_info.formats.DepthFiles = 'ImDepthOrig\d*\.png';
 cal_info.formats.ConfidenceFiles = 'ImDepthConf\d*\.png';
 
 % Files
+cal_info.files.number_of_files = 0;
 cal_info.files.depth = [];
 cal_info.files.confidence = [];
 cal_info.files.color = [];

@@ -33,11 +33,9 @@ plot_depth_images(cal_info.files.depth, cal_info.options);
 % Show Confidence Image Thumbnails
 plot_confidence_images(cal_info.files.confidence);
 
+% Select poses to use
+cal_info = select_poses(cal_info,[1,2]);
 
-if isempty(dfiles)
-    %if needed, select images
-    do_select_images_Intel(options);
-end
 %% iterative calibration
 
 do_process_depth_regions(options);

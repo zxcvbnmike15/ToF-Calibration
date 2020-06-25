@@ -91,8 +91,10 @@ cal_info.files.confidence = conf_files;
 if cal_info.options.color_present == 1
     cal_info.files.color = color_files;
 end
+num_files = numel(cal_info.files.depth);
 cal_info.files_added = 1;
-fprintf(1,'%d plane poses found.\n',numel(cal_info.files.depth));
+cal_info.files.number_of_files = num_files;
+fprintf(1,'%d plane poses found.\n',num_files);
 
 end
 
