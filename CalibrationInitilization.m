@@ -83,6 +83,12 @@ cal_info.files.color = [];
 cal_info.files_added = false;
 cal_info.dataset_path = [];
 
+% Depth Calibration Parameters
+cal_info.depth.depth_plane_poly = [];
+cal_info.depth.depth_plane_mask = [];
+cal_info.depth.depth_plane_points = [];
+cal_info.depth.depth_plane_disparity = [];
+
 %% Parse Inputs
 for ii = 1:2:length(varargin)
     name_in = varargin{ii};

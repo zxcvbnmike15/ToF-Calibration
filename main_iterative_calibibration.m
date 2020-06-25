@@ -38,7 +38,7 @@ cal_info = select_poses(cal_info,[1,2]);
 
 %% Iterative calibration
 %% Process Depth Regions
-do_process_depth_regions(options);
+process_depth_regions(cal_info);
 
 %save all markups
 do_initial_calib_intel(options);
