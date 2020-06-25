@@ -1,22 +1,43 @@
-clear global
-clear function
-clear all
-close all
-clc
-%%
-options = calibrate_options();
-options.color_present = 1;
-%% iterative calibration
+%% Clear workspace to prevent issues with global variables
+clear global; clear function; clear all;
+clc;
+close all;
+%% Run Global Vars According to README
+global_vars
 
 global dataset_path conf_grid_p conf_grid_x depth_plane_points depth_plane_disparity calib0
 global dfiles rgb_grid_p
 global corner_count_x corner_count_y dx
 
-if isempty(dfiles)
-    %if needed, select images
-    do_select_images_Intel(options);
+%% Establish Calibiration Options
+cal_info = CalibrationInitilization('color_present',true);
+
+
+%% Add Camera Files
+
+% Add the dataset path
+dataset_path = fullfile('C:\Users\zxcvb\Documents\MATLAB\Yuri\data');
+cal_info.dataset_path = dataset_path;
+
+% Find Images: 
+if cal_info.files_added == false
+    cal_info = find_images(cal_info);
 end
 
+% Show Color Image thumbnails
+plot_color_images(cal_info.files.color);
+
+% Show Depth Image Thumbnails
+plot_depth_images(cal_info.files.depth, cal_info.options);
+
+% Show Confidence Image Thumbnails
+plot_confidence_images(cal_info.files.confidence);
+
+% Select poses to use
+cal_info = select_poses(cal_info,[1,2]);
+
+%% Iterative calibration
+%% Process Depth Regions
 do_process_depth_regions(options);
 
 %save all markups

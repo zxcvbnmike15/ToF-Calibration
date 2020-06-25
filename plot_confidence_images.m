@@ -32,7 +32,7 @@ function plot_confidence_images(confidence_files)
 %% Setup Figure
 
 % Determine number grid shape
-num_img = numel(color_files);
+num_img = numel(confidence_files);
 fig_rows = floor(sqrt(num_img));
 fig_cols = ceil(num_img/fig_rows);
 num_tiles = fig_rows*fig_cols;

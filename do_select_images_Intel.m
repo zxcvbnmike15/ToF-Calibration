@@ -56,7 +56,7 @@ end
 
 %Show thumbnails
 plot_all_images(dataset_path,rfiles,dfiles,options);
-plot_confidence( dataset_path, cfiles );
+plot_confidence_old( dataset_path, cfiles );
 
 %Ask user
 calib_idx=input('Select poses to use for calibration ([]=all):');
