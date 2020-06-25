@@ -36,8 +36,8 @@ plot_confidence_images(cal_info.files.confidence);
 % Select poses to use
 cal_info = select_poses(cal_info,[1,2]);
 
-%% iterative calibration
-
+%% Iterative calibration
+%% Process Depth Regions
 do_process_depth_regions(options);
 
 %save all markups
