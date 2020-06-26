@@ -1,4 +1,5 @@
-function depth_params = select_planes(depth_files, depth_params)
+function [depth_plane_poly, depth_plane_mask] = select_planes(depth_files,...
+    depth_plane_poly, depth_plane_mask)
 % Time of Flight Calibration Toolbox
 % Function: select_planes()
 %
@@ -17,9 +18,6 @@ function depth_params = select_planes(depth_files, depth_params)
 num_files = numel(depth_files);
 dpth_names = {depth_files(:).name};
 
-% depth parameter info
-depth_plane_poly = depth_params.depth_plane_poly;
-depth_plane_mask = depth_params.depth_plane_mask;
 % Get image size
 filename = fullfile(depth_files(1).folder,depth_files(1).name);
 im_info = imfinfo(filename);
@@ -76,9 +74,5 @@ for ii=fidx
         depth_plane_mask{ii} = inpolygon(uu,vv,depth_plane_poly{ii}(1,:),depth_plane_poly{ii}(2,:));
     end
 end
-
-%% Place results into structure
-depth_params.depth_plane_poly = depth_plane_poly;
-depth_params.depth_plane_mask = depth_plane_mask;
 
 fprintf('Done\n');
