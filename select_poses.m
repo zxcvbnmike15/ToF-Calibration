@@ -55,3 +55,4 @@ cal_info.files.confidence = cal_info.files.confidence(poses);
 if cal_info.options.color_present == 1
     cal_info.files.color = cal_info.files.color(poses);
 end
+cal_info.files.number_of_files = length(poses);

@@ -34,11 +34,11 @@ plot_depth_images(cal_info.files.depth, cal_info.options);
 plot_confidence_images(cal_info.files.confidence);
 
 % Select poses to use
-cal_info = select_poses(cal_info,[1,2]);
+cal_info = select_poses(cal_info,[1]);
 
 %% Iterative calibration
 %% Process Depth Regions
-do_process_depth_regions(options);
+cal_info = process_depth_regions(cal_info);
 
 %save all markups
 do_initial_calib_intel(options);

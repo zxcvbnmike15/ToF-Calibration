@@ -1,30 +1,19 @@
-function [points,disparity]=get_depth_samples(path,dfiles,masks,options)
-cell_input = iscell(dfiles);
-if(~cell_input)
-    dfiles = {dfiles};
-    masks = {masks};
-end
+function [points,disparity]=get_depth_samples(depth_files,masks,options)
+%
+%
 
-icount = length(dfiles);
 
-points = cell(1,icount);
-disparity = cell(1,icount);
+num_files = numel(depth_files);
 
-for i=1:icount
-    if(isempty(dfiles{i}))
-        points{i} = zeros(2,0);
-        disparity{i} = zeros(1,0);
-    else
-        imd = read_disparity([path dfiles{i}],options);
-        
-        [points{i}(2,:),points{i}(1,:)] = ind2sub(size(masks{i}),find(masks{i})');
-        points{i} = points{i}-1; %Zero based
-        disparity{i} = imd(masks{i})';
-    end
-end
+points = cell(1,num_files);
+disparity = cell(1,num_files);
 
-%Choose cell or vector output
-if(~cell_input)
-    points = points{1};
-    disparity = disparity{1};
+for ii=1:num_files
+    filename = fullfile(depth_files(ii).folder,depth_files(ii).name);
+    imd = read_disparity(filename,options);
+    
+    [points{ii}(2,:),points{ii}(1,:)] = ind2sub(size(masks{ii}),find(masks{ii})');
+    points{ii} = points{ii}-1; %Zero based
+    disparity{ii} = imd(masks{ii})';
+    
 end
