@@ -91,25 +91,38 @@ cal_info.depth.depth_plane_points = [];
 cal_info.depth.depth_plane_disparity = [];
 cal_info.depth.max_depth_sample_count = 10000;
 
+% Color Calibration Parameters
+cal_info.conf_grid_x = [];
+cal_info.conf_grid_p = [];
+
+% Currently Unknown Parameters
+cal_info.rgb_grid_p = [];
+cal_info.rgb_grid_x = [];
+cal_info.depth_corner_p =[];
+cal_info.depth_corner_x = [];
+cal_info.dx = [];
+cal_info.corner_count_x = [];
+cal_info.corner_count_y = [];
+
 % Initial Calibration Parameters
 cal_info.calib0.rK = {};               %Color camera intrinsics matrix
 cal_info.calib0.rkc = {};              %Color camera distortion coefficients
 cal_info.calib0.rR = {};               %Rotation matrix depth camera to color camera (first is always identity)
 cal_info.calib0.rt = {};               %Translation vector depth camera to color camera (first is always zero)
-cal_info.calib0.Rext = [];  %checherboard plane rotation relative to color
-cal_info.calib0.text = [];  %checherboard plane translation relative to color
+cal_info.calib0.Rext = [];             %checherboard plane rotation relative to color
+cal_info.calib0.text = [];             %checherboard plane translation relative to color
 
 cal_info.calib0.cK = [];               %ToF intrinsics matrix
 cal_info.calib0.ckc = [];              %ToF distortion coefficients
 cal_info.calib0.cRext = [];            %checherboard plane rotation relative to ToF
 cal_info.calib0.ctext = [];            %checherboard plane translation relative to ToF
-cal_info.calib0.cR = [];           %1st color camera rotation relative to ToF
-cal_info.calib0.ct = [];           %1st color camera translation relative to ToF
+cal_info.calib0.cR = [];               %1st color camera rotation relative to ToF
+cal_info.calib0.ct = [];               %1st color camera translation relative to ToF
 
-%  cal_info.calib0.inputs = [];               %X coordinates in regression
-%  cal_info.calib0.res = [];               %Y responce in regression
-cal_info.calib0.h = 20;             %kernel bandwidth
-cal_info.calib0.coords = [1 2];             %coordinates from X actually used in regression
+%  cal_info.calib0.inputs = [];        %X coordinates in regression
+%  cal_info.calib0.res = [];           %Y responce in regression
+cal_info.calib0.h = 20;                %kernel bandwidth
+cal_info.calib0.coords = [1 2];        %coordinates from X actually used in regression
 
 %% Parse Inputs
 for ii = 1:2:length(varargin)
