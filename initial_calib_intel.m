@@ -1,7 +1,6 @@
-function initial_calib_intel(options)
+function initial_calib_intel(calib0,options)
 
 %% initialize calibration
-global calib0 rfiles
 
 %do corner-based calibration
 do_initial_conf_calib(options.use_fixed_ini);
