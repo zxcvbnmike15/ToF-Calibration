@@ -88,6 +88,7 @@ cal_info.depth.depth_plane_poly = [];
 cal_info.depth.depth_plane_mask = [];
 cal_info.depth.depth_plane_points = [];
 cal_info.depth.depth_plane_disparity = [];
+cal_info.depth.max_depth_sample_count = 10000;
 
 %% Parse Inputs
 for ii = 1:2:length(varargin)

@@ -1,4 +1,4 @@
-function process_depth_regions(cal_info)
+function cal_info = process_depth_regions(cal_info)
 % Time of Flight Calibration Toolbox
 % Function: CalibrationInitilization()
 %
@@ -9,6 +9,7 @@ function process_depth_regions(cal_info)
 depth_files = cal_info.files.depth;
 options = cal_info.options;
 
+max_depth_sample_count = cal_info.depth.max_depth_sample_count;
 depth_plane_mask = cal_info.depth.depth_plane_mask;
 depth_plane_poly = cal_info.depth.depth_plane_poly;
 depth_plane_points = cal_info.depth.depth_plane_points;

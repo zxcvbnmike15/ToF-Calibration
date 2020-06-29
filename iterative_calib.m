@@ -6,6 +6,9 @@ clc
 %%
 options = calibrate_options();
 options.color_present = 1;
+
+%%
+global_vars;
 %% iterative calibration
 
 global dataset_path conf_grid_p conf_grid_x depth_plane_points depth_plane_disparity calib0
