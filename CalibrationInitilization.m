@@ -10,16 +10,16 @@ function cal_info = CalibrationInitilization(varargin)
 % DESCRIPTION:
 %   The CalibrationInitilization function act as a psuedo class constructor.
 %   The function is used to initialize the calibration paramters,
-%   setttings, and formats. 
-%   
-%   cal_info = CalibrationInitilization() - 
+%   setttings, and formats.
+%
+%   cal_info = CalibrationInitilization() -
 %   Return the default settings and formats.
 %
-%   cal_info = CalibrationInitilization('setup') - 
+%   cal_info = CalibrationInitilization('setup') -
 %   The user will be propted to input the settings and format in the
 %   command window
 %
-%   cal_info = CalibrationInitilization(name,value) = 
+%   cal_info = CalibrationInitilization(name,value) =
 %   Name value pairs are parsed and added to cal_info. Any parameters not
 %   specifed will be set to default.
 %
@@ -27,15 +27,15 @@ function cal_info = CalibrationInitilization(varargin)
 %   display                 - Unknown Option. Suggest leaving as default.
 %                             Character Array.
 %   correct_depth           - Use depth correction. Logical value.
-%   depth_in_cailb          - Use depth measurements in calibration. 
+%   depth_in_cailb          - Use depth measurements in calibration.
 %                             Logical value.
 %   color_present           - Indicates Presence of at least one color
 %                             camera. Logical value.
 %   max_itererations        - Maximum number ofiterations. Positive Integer
 %   use_fixed_init          - Use Fixed Initilization for initial intrinsic
 %                             parameter estimation. Logical value.
-%   color_file_format       - Format of Color Image files. 
-%                             Regular Expression. 
+%   color_file_format       - Format of Color Image files.
+%                             Regular Expression.
 %   depth_file_format       - Format of Depth Image files.
 %                             Regular Expression.
 %   confidence_file_format  - Format of Confidence Image files.
@@ -55,7 +55,7 @@ function cal_info = CalibrationInitilization(varargin)
 % Author: Michael Smith
 % Center for Coastal and Ocean Mapping
 % University of New Hampshire
-% Copyright 2020 
+% Copyright 2020
 
 %% Stadard Setup
 fprintf(1,'Initilizing Calibration parameters and settings.\n');
@@ -67,6 +67,7 @@ cal_info.options.depth_in_calib = true;%use depth measurements in calibration
 cal_info.options.color_present = false; %at least one color camera is present
 cal_info.options.max_iter = 30;
 cal_info.options.use_fixed_ini = true; %use fixed initialization for initial intrinsic parameter estimation
+cal_info.options.is_validation = false;
 
 % Calibration Image Formats
 cal_info.formats.ColorFiles = 'ImRGB\d*\.png';
@@ -89,6 +90,26 @@ cal_info.depth.depth_plane_mask = [];
 cal_info.depth.depth_plane_points = [];
 cal_info.depth.depth_plane_disparity = [];
 cal_info.depth.max_depth_sample_count = 10000;
+
+% Initial Calibration Parameters
+cal_info.calib0.rK = {};               %Color camera intrinsics matrix
+cal_info.calib0.rkc = {};              %Color camera distortion coefficients
+cal_info.calib0.rR = {};               %Rotation matrix depth camera to color camera (first is always identity)
+cal_info.calib0.rt = {};               %Translation vector depth camera to color camera (first is always zero)
+cal_info.calib0.Rext = [];  %checherboard plane rotation relative to color
+cal_info.calib0.text = [];  %checherboard plane translation relative to color
+
+cal_info.calib0.cK = [];               %ToF intrinsics matrix
+cal_info.calib0.ckc = [];              %ToF distortion coefficients
+cal_info.calib0.cRext = [];            %checherboard plane rotation relative to ToF
+cal_info.calib0.ctext = [];            %checherboard plane translation relative to ToF
+cal_info.calib0.cR = [];           %1st color camera rotation relative to ToF
+cal_info.calib0.ct = [];           %1st color camera translation relative to ToF
+
+%  cal_info.calib0.inputs = [];               %X coordinates in regression
+%  cal_info.calib0.res = [];               %Y responce in regression
+cal_info.calib0.h = 20;             %kernel bandwidth
+cal_info.calib0.coords = [1 2];             %coordinates from X actually used in regression
 
 %% Parse Inputs
 for ii = 1:2:length(varargin)
