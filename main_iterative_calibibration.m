@@ -41,7 +41,7 @@ cal_info = select_poses(cal_info,[1]);
 cal_info = process_depth_regions(cal_info);
 
 %save all markups
-do_initial_calib_intel(options);
+initial_calib_intel(cal_info);
 
 fprintf('Initial Calibration - done\n');
 fprintf('Saving the variables \n');

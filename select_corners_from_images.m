@@ -1,9 +1,7 @@
-function select_corners_from_images(files, grid_x,grid_y, use_automatic,...
-    dx,corner_count_x, corner_count_y)
+function [grid_x, grid_p] = select_corners_from_images(conf_files, grid_x,grid_p,...
+    use_automatic,dx,corner_count_x, corner_count_y)
 
-global grid_x grid_p dataset_path
-
-icount = length(files);
+num_files = numel(conf_files);
 
 if(~exist('use_automatic','var'))
     use_automatic = input('Use automatic corner detector? ([]=true, other=false)? ','s');
@@ -15,8 +13,8 @@ if(~exist('use_automatic','var'))
 end
 
 if(~exist('corner_count_x','var'))
-    corner_count_x = input(['Inner corner count in X direction: ']);
-    corner_count_y = input(['Inner corner count in Y direction: ']);
+    corner_count_x = input('Inner corner count in X direction: ');
+    corner_count_y = input('Inner corner count in Y direction: ');
 end
 
 default = 26;
@@ -34,24 +32,27 @@ if(isempty(win_dx))
 end
 
 %Select images
-if(isempty(grid_x))
-    grid_p = cell(1,icount);
-    grid_x = cell(1,icount);
-    fidx = 1:icount;
+if isempty(grid_x)
+    grid_p = cell(1,num_files);
+    grid_x = cell(1,num_files);
+    fidx = 1:num_files;
 else
     %Check for too small or too big array
-    if(length(grid_x) ~= icount)
-        grid_p{icount} = [];
-        grid_x{icount} = [];
-    elseif(length(grid_x) > icount)
-        grid_p = grid_p(1:icount);
-        grid_x = grid_x(1:icount);
+    if length(grid_x) ~= num_files
+        grid_p{num_files} = [];
+        grid_x{num_files} = [];
+    elseif length(grid_x) > num_files
+        grid_p = grid_p(1:num_files);
+        grid_x = grid_x(1:num_files);
     end
     
     %Select only missing planes
-    missing = cellfun(@(x) isempty(x),grid_x) & ~cellfun(@(x) isempty(x),files);
+    % I don't know if this is necessary but okay...
+    nms = struct2cell(conf_files);
+    nms = nms(1,:);
+    missing = cellfun(@(x) isempty(x),grid_x) & ~cellfun(@(x) isempty(x),nms);
     if(all(missing))
-        fidx = 1:icount;
+        fidx = 1:num_files;
     else
         fidx = find(missing);
     end
@@ -64,19 +65,21 @@ clf;
 
 
 %Extract grid for all images
-for i=fidx
-    if(isempty(files{i}))
-        continue
-    end
+for ii=fidx
+
+    % THis can't happen
+%     if(isempty(conf_files{i}))
+%         continue
+%     end
     
-    fprintf('#%d - %s\n',i,files{i});
+    fprintf('#%d - %s\n',ii,conf_files(ii).name);
+    filename = fullfile(conf_files(ii).folder,conf_files(ii).name);
+    im = imread(filename);
     
-    im = imread([dataset_path files{i}]);
+    [pp,xx] = do_select_corners(im,corner_count_x,corner_count_y,dx,use_automatic,win_dx,ii);
     
-    [pp,xx] = do_select_corners(im,corner_count_x,corner_count_y,dx,use_automatic,win_dx,i);
-    
-    grid_p{i} = pp;
-    grid_x{i} = xx;
+    grid_p{ii} = pp;
+    grid_x{ii} = xx;
     
     %fprintf('Press ENTER to continue\n');
     %pause;

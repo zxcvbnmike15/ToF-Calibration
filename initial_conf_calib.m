@@ -1,20 +1,19 @@
-function conf_error_var = initial_conf_calib(calib0,conf_params,color_files, use_fixed_init)
+function [conf_error_var, calib0,conf_params] = initial_conf_calib(calib0,...
+    conf_params,conf_files, use_fixed_init)
 
-conf_grid_p = conf_params.conf_grid_p;
-conf_grid_x = conf_params.conf_grid_x;
 
-cK = calib0.cK;
 %% Setup
 % Confidence Params
-
-
+conf_grid_p = conf_params.conf_grid_p;
+conf_grid_x = conf_params.conf_grid_x;
+cK = calib0.cK;
 %% Confidence Camera Calibration
 % Select the confidence corners
-if(isempty(conf_grid_p))
-    do_select_conf_corners();
+if isempty(conf_grid_p)
+    conf_params = select_conf_corners(conf_params,conf_files);
 end
 
-if(~isempty(cK))
+if ~isempty(cK)
     conf_error_var = 0;
     return
 end
@@ -24,7 +23,7 @@ fprintf('Initial Depth confidence camera calibration\n');
 fprintf('-------------------\n');
 
 % Get the image size
-file_name = fullfile(color_files.folder(1), color_files(1).name);
+file_name = fullfile(conf_files.folder(1), conf_files(1).name);
 im_info = imfinfo(file_name);
 width = im_info.Width;
 height = im_info.Height;

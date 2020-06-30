@@ -1,4 +1,4 @@
-function select_conf_corners(conf_params, color_files)
+function conf_params = select_conf_corners(conf_params, conf_files)
 
 %% Setup
 persistent grid_p grid_x
@@ -35,7 +35,8 @@ if(isempty(dx))
     dx = default;
 end
 
-do_select_corners_from_images(color_files,use_automatic,dx,corner_count_x, corner_count_y);
+[grid_x, grid_p] = select_corners_from_images(conf_files, grid_x, grid_p,...
+    use_automatic,dx,corner_count_x, corner_count_y);
 
 conf_grid_p = grid_p;
 conf_grid_x = grid_x;
@@ -43,5 +44,8 @@ conf_grid_x = grid_x;
 %% Pack it up
 conf_params.conf_grid_x = conf_grid_x;
 conf_params.conf_grid_p = conf_grid_p;
+conf_params.corner_count_y = corner_count_y;
+conf_params.corner_count_x = corner_count_x;
+conf_params.dx = dx;
 grid_p = {};
 grid_x = {};
