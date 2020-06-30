@@ -91,18 +91,18 @@ cal_info.depth.depth_plane_points = [];
 cal_info.depth.depth_plane_disparity = [];
 cal_info.depth.max_depth_sample_count = 10000;
 
-% Color Calibration Parameters
-cal_info.conf_grid_x = [];
-cal_info.conf_grid_p = [];
+% Confidence Calibration Parameters
+cal_info.confidence.conf_grid_x = [];
+cal_info.confidence.conf_grid_p = [];
+cal_info.confidence.dx = [];
+cal_info.confidence.corner_count_x = [];
+cal_info.confidence.corner_count_y = [];
 
 % Currently Unknown Parameters
 cal_info.rgb_grid_p = [];
 cal_info.rgb_grid_x = [];
 cal_info.depth_corner_p =[];
 cal_info.depth_corner_x = [];
-cal_info.dx = [];
-cal_info.corner_count_x = [];
-cal_info.corner_count_y = [];
 
 % Initial Calibration Parameters
 cal_info.calib0.rK = {};               %Color camera intrinsics matrix
@@ -118,7 +118,6 @@ cal_info.calib0.cRext = [];            %checherboard plane rotation relative to 
 cal_info.calib0.ctext = [];            %checherboard plane translation relative to ToF
 cal_info.calib0.cR = [];               %1st color camera rotation relative to ToF
 cal_info.calib0.ct = [];               %1st color camera translation relative to ToF
-
 %  cal_info.calib0.inputs = [];        %X coordinates in regression
 %  cal_info.calib0.res = [];           %Y responce in regression
 cal_info.calib0.h = 20;                %kernel bandwidth
