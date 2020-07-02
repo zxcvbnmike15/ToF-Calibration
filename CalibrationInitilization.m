@@ -98,9 +98,11 @@ cal_info.confidence.dx = [];
 cal_info.confidence.corner_count_x = [];
 cal_info.confidence.corner_count_y = [];
 
+% Color Parameters
+cal_info.color.rgb_grid_p = [];
+cal_info.color.rgb_grid_x = [];
+
 % Currently Unknown Parameters
-cal_info.rgb_grid_p = [];
-cal_info.rgb_grid_x = [];
 cal_info.depth_corner_p =[];
 cal_info.depth_corner_x = [];
 

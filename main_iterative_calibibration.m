@@ -9,6 +9,8 @@ global dataset_path conf_grid_p conf_grid_x depth_plane_points depth_plane_dispa
 global dfiles rgb_grid_p
 global corner_count_x corner_count_y dx
 
+%% Add the Gaussian package to the past
+addpath(genpath('.'));
 %% Establish Calibiration Options
 cal_info = CalibrationInitilization('color_present',true);
 
@@ -45,20 +47,15 @@ initial_calib_intel(cal_info);
 
 fprintf('Initial Calibration - done\n');
 fprintf('Saving the variables \n');
-save([dataset_path '/markup.mat'],'conf_grid_p','conf_grid_x',...
-    'depth_plane_mask','rgb_grid_p','rgb_grid_x',...
-    'corner_count_x','corner_count_y','dx',...
-    'rfiles','dfiles','cfiles');
-
+init_cal = fullfile(cal_info.dataset_path,'markup.mat');
+save(init_cal,'cal_info');
 
 %c = calib0;
 errors = [];
 iter = 0;
 
-calib = calib0;
-
 if(options.color_present)
-    [cost,comp] = calibrate_intel_cost(calib,depth_plane_points,depth_plane_disparity,conf_grid_x,conf_grid_p,options,rgb_grid_p{1});
+    [cost,comp] = calibrate_intel_cost(cal_info);
     if(options.depth_in_calib)
         calib.sigma_dplane = std(cost(comp=='P'))*sqrt(sum(comp=='P'))/1; %underweight depth points
     else

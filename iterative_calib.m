@@ -40,7 +40,7 @@ iter = 0;
 calib = calib0;
 
 if(options.color_present)
-    [cost,comp] = calibrate_intel_cost(calib,depth_plane_points,depth_plane_disparity,conf_grid_x,conf_grid_p,options,rgb_grid_p{1});
+    [cost,comp] = calibrate_intel_cost_old(calib,depth_plane_points,depth_plane_disparity,conf_grid_x,conf_grid_p,options,rgb_grid_p{1});
     if(options.depth_in_calib)
         calib.sigma_dplane = std(cost(comp=='P'))*sqrt(sum(comp=='P'))/1; %underweight depth points
     else
@@ -49,7 +49,7 @@ if(options.color_present)
     calib.sigma_dcorners = std(cost(comp=='C'))*sqrt(sum(comp=='C'))/10;
     calib.sigma_rgb = std(cost(comp=='R'))*sqrt(sum(comp=='R'))/10;
 else
-    [cost,comp] = calibrate_intel_cost(calib,depth_plane_points,depth_plane_disparity,conf_grid_x,conf_grid_p,options);
+    [cost,comp] = calibrate_intel_cost_old(calib,depth_plane_points,depth_plane_disparity,conf_grid_x,conf_grid_p,options);
     calib.sigma_dplane = std(cost(comp=='P'))*sqrt(sum(comp=='P'))/10;
     calib.sigma_dcorners = std(cost(comp=='C'))*sqrt(sum(comp=='C'))/10;
     calib.sigma_rgb = 1;
