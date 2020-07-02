@@ -12,6 +12,8 @@ cK = calib0.cK;
 if isempty(conf_grid_p)
     conf_params = select_conf_corners(conf_params,conf_files);
 end
+conf_grid_p = conf_params.conf_grid_p;
+conf_grid_x = conf_params.conf_grid_x;
 
 if ~isempty(cK)
     conf_error_var = 0;
@@ -23,10 +25,10 @@ fprintf('Initial Depth confidence camera calibration\n');
 fprintf('-------------------\n');
 
 % Get the image size
-file_name = fullfile(conf_files.folder(1), conf_files(1).name);
+file_name = fullfile(conf_files(1).folder, conf_files(1).name);
 im_info = imfinfo(file_name);
-width = im_info.Width;
-height = im_info.Height;
+im_width = im_info.Width;
+im_height = im_info.Height;
 
 kc0 = zeros(1,5);
 [cK,ckc,cRext,ctext,conf_error_var]  = do_initial_calib(conf_grid_p,conf_grid_x,[im_height,im_width],kc0,use_fixed_init);
