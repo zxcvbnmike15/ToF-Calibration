@@ -113,7 +113,8 @@ cal_info.calib0.rR = {};               %Rotation matrix depth camera to color ca
 cal_info.calib0.rt = {};               %Translation vector depth camera to color camera (first is always zero)
 cal_info.calib0.Rext = [];             %checherboard plane rotation relative to color
 cal_info.calib0.text = [];             %checherboard plane translation relative to color
-
+cal_info.calib0.color_error_var = [];
+cal_info.calib0.conf_error_var = [];
 cal_info.calib0.cK = [];               %ToF intrinsics matrix
 cal_info.calib0.ckc = [];              %ToF distortion coefficients
 cal_info.calib0.cRext = [];            %checherboard plane rotation relative to ToF

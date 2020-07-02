@@ -1,4 +1,4 @@
-function [conf_error_var, calib0,conf_params] = initial_conf_calib(calib0,...
+function [calib0,conf_params] = initial_conf_calib(calib0,...
     conf_params,conf_files, use_fixed_init)
 
 
@@ -43,6 +43,7 @@ calib0.cRext = cRext;
 calib0.ctext = ctext;
 calib0.cR = cR;
 calib0.ct = ct;
+calib0.conf_error_var = conf_error_var;
 
 fprintf('\nInitial calibration for depth camera\n');
 print_calib_conf(calib0);
