@@ -6,7 +6,7 @@ close all;
 %% Add the Gaussian package to the past
 addpath(genpath('.'));
 %% Establish Calibiration Options
-cal_info = CalibrationInitilization('color_present',false);
+cal_info = CalibrationInitilization('color_present',false,'max_iterations',3);
 
 
 %% Add Camera Files

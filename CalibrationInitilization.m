@@ -184,8 +184,8 @@ for ii = 1:2:length(varargin)
             end
             
         case 'max_iterations'
-            if isnumeric(val_in) && isinteger(val_in) && val_in>0
-                cal_info.max_iter = val_in;
+            if isnumeric(val_in) && val_in>0
+                cal_info.options.max_iter = floor(val_in);
             else
                 error('Invalid input for "max_iterations". Must be positive non-zero integer');
             end
