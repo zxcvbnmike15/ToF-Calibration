@@ -12,13 +12,15 @@ conf_grid_x = cal_info.confidence.conf_grid_x;
 conf_grid_p = cal_info.confidence.conf_grid_p;
 options = cal_info.options;
 rgb_grid_p = cal_info.color.rgb_grid_p;
+
+%% Calculate depth cost
 [cost_depth, comp] = calibrate_intel_cost_depth(calib,depth_points,depth_disparity,conf_grid_x,conf_grid_p,options);
 
 if(sum(isnan(cost_depth))>0)
     warning('NaN values in cost');
 end
 
-if (exist('rgb_grid_p','var'))
+if options.color_present && exist('rgb_grid_p','var')
     cost_rgb = calibrate_intel_cost_color(calib, conf_grid_x, rgb_grid_p);
     
     comp = [comp; repmat('R',length(cost_rgb),1)];

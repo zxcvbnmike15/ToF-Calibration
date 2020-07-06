@@ -1,4 +1,4 @@
-function [cost, comp ] =calibrate_intel_cost(calib,depth_points,depth_depth,conf_grid_x,conf_grid_p,options,rgb_grid_p)
+function [cost, comp ] =calibrate_intel_cost_old(calib,depth_points,depth_depth,conf_grid_x,conf_grid_p,options,rgb_grid_p)
 % cost=calibrate_intel_cost_depth(params,options,depth_plane_points,depth_plane_disparity)
 % Cost for depth images, used by calibrate_intel_cost;
 % Uses both depth and corner-based cost on confidence map
