@@ -73,7 +73,7 @@ c = calibrate_intel(options,calib);
 
 if(options.depth_in_calib && options.correct_depth)
     
-    calib = fit_depth_correction(c);
+    calib = fit_depth_correction_old(c);
     %corr = [corr; gaussian_kern_reg(corr_points,calib.inputs,calib.res, calib.h)];
     
     %eval = do_eval(calib,options,eval);
