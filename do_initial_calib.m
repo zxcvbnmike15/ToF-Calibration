@@ -16,7 +16,7 @@ if(use_fixed_init)
     ids = find(~cellfun(@(x) isempty(x),grid_p));
     for i=1:length(ids)
         H = homography_from_corners(grid_p{ids(i)},grid_x{ids(i)});
-        [rRc{ids(i)},rtc{ids(i)}] = extrinsics_from_homography(rKc,H);
+        [rRc{ids(i)},rtc{ids(i)}] = extern_from_homography(rKc,H);
     end
 else
     %Estimate intrinsics and extrinsics using homographies

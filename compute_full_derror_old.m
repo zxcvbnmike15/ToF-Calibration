@@ -1,4 +1,6 @@
-function [error,depthm,imxy,imind] = compute_full_derror(calib,depth_plane_disparity,depth_plane_points)
+function [error,depthm,imxy,imind] = compute_full_derror_old(calib)
+
+global depth_plane_disparity depth_plane_points
 
 error = [];
 depthm = [];

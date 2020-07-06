@@ -1,11 +1,11 @@
-function calib = fit_depth_correction(calib,depth_plane_disparity,depth_plane_points)
+function calib = fit_depth_correction_old(calib)
 
 %remove the previous correction estimate
 if(isfield(calib,'inputs'))
     calib = rmfield(calib,'inputs');
 end
 %compute error accross images
-[error,depthm,imxy] = compute_full_derror(calib,depth_plane_disparity,depth_plane_points);
+[error,depthm,imxy] = compute_full_derror_old(calib);
 
 d = sqrt(sum((imxy - repmat(calib.cK(1:2,3),1,size(imxy,2))).^2,1)); %distance to the image center
 %remove outliers
