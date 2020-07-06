@@ -1,11 +1,11 @@
-function conf_params = select_conf_corners(conf_params, conf_files)
+function conf_params = select_conf_corners(conf_params, conf_files, image_params)
 
 %% Setup
 persistent grid_p grid_x
 
-corner_count_x = conf_params.corner_count_x;
-corner_count_y = conf_params.corner_count_y;
-dx = conf_params.dx;
+corner_count_x = image_params.corner_count_x;
+corner_count_y = image_params.corner_count_y;
+dx = image_params.dx;
 
 
  %% Select the confidence image corners
@@ -44,8 +44,8 @@ conf_grid_x = grid_x;
 %% Pack it up
 conf_params.conf_grid_x = conf_grid_x;
 conf_params.conf_grid_p = conf_grid_p;
-conf_params.corner_count_y = corner_count_y;
-conf_params.corner_count_x = corner_count_x;
-conf_params.dx = dx;
+image_params.corner_count_y = corner_count_y;
+image_params.corner_count_x = corner_count_x;
+image_params.dx = dx;
 grid_p = {};
 grid_x = {};

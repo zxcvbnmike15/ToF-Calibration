@@ -1,5 +1,5 @@
 function [calib0,conf_params] = initial_conf_calib(calib0,...
-    conf_params,conf_files, use_fixed_init)
+    conf_params,conf_files,image_params,use_fixed_init)
 
 
 %% Setup
@@ -10,7 +10,7 @@ cK = calib0.cK;
 %% Confidence Camera Calibration
 % Select the confidence corners
 if isempty(conf_grid_p)
-    conf_params = select_conf_corners(conf_params,conf_files);
+    conf_params = select_conf_corners(conf_params,conf_files,image_params);
 end
 conf_grid_p = conf_params.conf_grid_p;
 conf_grid_x = conf_params.conf_grid_x;

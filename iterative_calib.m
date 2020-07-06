@@ -14,7 +14,7 @@ global_vars;
 global dataset_path conf_grid_p conf_grid_x depth_plane_points depth_plane_disparity calib0
 global dfiles rgb_grid_p
 global corner_count_x corner_count_y dx
-
+s
 if isempty(dfiles)
     %if needed, select images
     do_select_images_Intel(options);

@@ -12,7 +12,7 @@ global corner_count_x corner_count_y dx
 %% Add the Gaussian package to the past
 addpath(genpath('.'));
 %% Establish Calibiration Options
-cal_info = CalibrationInitilization('color_present',true);
+cal_info = CalibrationInitilization('color_present',false);
 
 
 %% Add Camera Files
@@ -27,7 +27,9 @@ if cal_info.files_added == false
 end
 
 % Show Color Image thumbnails
-plot_color_images(cal_info.files.color);
+if cal_info.color_present == 1
+    plot_color_images(cal_info.files.color);
+end
 
 % Show Depth Image Thumbnails
 plot_depth_images(cal_info.files.depth, cal_info.options);

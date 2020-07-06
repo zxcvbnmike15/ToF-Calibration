@@ -94,9 +94,11 @@ cal_info.depth.max_depth_sample_count = 10000;
 % Confidence Calibration Parameters
 cal_info.confidence.conf_grid_x = [];
 cal_info.confidence.conf_grid_p = [];
-cal_info.confidence.dx = [];
-cal_info.confidence.corner_count_x = [];
-cal_info.confidence.corner_count_y = [];
+
+% Image Parameters....
+cal_info.image.dx = [];
+cal_info.image.corner_count_x = [];
+cal_info.image.corner_count_y = [];
 
 % Color Parameters
 cal_info.color.rgb_grid_p = [];

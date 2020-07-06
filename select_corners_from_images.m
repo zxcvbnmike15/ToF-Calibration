@@ -1,7 +1,7 @@
-function [grid_x, grid_p] = select_corners_from_images(conf_files, grid_x,grid_p,...
+function [grid_x, grid_p] = select_corners_from_images(files, grid_x,grid_p,...
     use_automatic,dx,corner_count_x, corner_count_y)
 
-num_files = numel(conf_files);
+num_files = numel(files);
 
 if(~exist('use_automatic','var'))
     use_automatic = input('Use automatic corner detector? ([]=true, other=false)? ','s');
@@ -48,7 +48,7 @@ else
     
     %Select only missing planes
     % I don't know if this is necessary but okay...
-    nms = struct2cell(conf_files);
+    nms = struct2cell(files);
     nms = nms(1,:);
     missing = cellfun(@(x) isempty(x),grid_x) & ~cellfun(@(x) isempty(x),nms);
     if(all(missing))
@@ -72,8 +72,8 @@ for ii=fidx
 %         continue
 %     end
     
-    fprintf('#%d - %s\n',ii,conf_files(ii).name);
-    filename = fullfile(conf_files(ii).folder,conf_files(ii).name);
+    fprintf('#%d - %s\n',ii,files(ii).name);
+    filename = fullfile(files(ii).folder,files(ii).name);
     im = imread(filename);
     
     [pp,xx] = do_select_corners(im,corner_count_x,corner_count_y,dx,use_automatic,win_dx,ii);
